@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  var array = [1, 1, '1', '1'];
+  // 最麻烦的去重
+  function unique (array) {
+    var result = []
+    for(let i = 0; i<array.length; i++) {
+      for(var j = 0; j<result.length; j++) {
+        if (array[i] === result[j]) {
+          break
+        }
+      }
+      if (j === result.length) {
+       //标示result都循环完了 没有一样的
+        result.push(array[i])
+      }
+    }
+    return result
+  }
+  // console.log(unique(array))
+
+
+  // 用indexOf减少一层循环
+  function unique1 (array) {
+    var result = []
+    for (let i = 0; i < array.length; i++) {
+      if (result.indexOf(array[i]) === -1) {
+        result.push(array[i])
+      }
+    }
+    return result
+  }
+  // console.log(unique1(array))
+
+  // es5 filter方法
+  function unique2(array) {
+    var res = array.filter(function(item, index, array){
+        return array.indexOf(item) === index;
+    })
+    return res;
+  }
+  // console.log(unique2(array))
+
+  // es6 
+  function unique3(array) {
+    return Array.from(new Set(array));
+  }
+  // console.log(unique3(array))
+
+  function unique4(array) {
+    return [...new Set(array)]
+  }
+  console.log(unique4(array))
+  
+  
+</script>
+</html>
