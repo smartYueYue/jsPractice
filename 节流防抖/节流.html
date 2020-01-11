@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="input">
+</body>
+<script>
+  var input = document.getElementById('input')
+  var fn = throttle(output, 1000)
+  input.addEventListener('input', () => {
+    fn(1, 2, 3)
+  })
+  function output () {
+    console.log(input.value)
+    console.log(arguments)
+  }
+  function throttle (fn, wait) {
+    var timer;
+    return function () {
+      var context = this
+      var args = arguments
+      if (timer) {
+        
+      } else {
+        timer = setTimeout(function(){
+          timer = null
+          fn.apply(context, args)
+        }, wait)
+      }
+    }
+  }
+</script>
+</html>
