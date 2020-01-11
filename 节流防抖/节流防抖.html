@@ -7,9 +7,48 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text">
+    <input type="text" id="input">
 </body>
 <script>
+    var input = document.getElementById('input')
+    // input.oninput = function() {
+    //     debounce(output, 500)
+    // }
+    const fn = debounce(output, 1000, true)
+    input.addEventListener('input', () => {
+        fn(1,2,3)
+    })
 
+    // input.oninput = debounce(output, 1000)
+    function output(e) {
+        console.log(input.value)
+        console.log(arguments[0])
+    }
+    function debounce (fn, wait, immediate) {
+        var timer;
+        return function () {
+            var me = this
+            var args = arguments
+            if (timer) {
+                clearTimeout(timer)
+            }
+            if (immediate) {
+                var first = timer
+                timer = setTimeout(function () {
+                    fn.apply(me, args)
+                    timer = null
+                }, wait)
+                if (!first) {
+                    fn.apply(me, args)
+                }
+            } else {
+                timer = setTimeout(function () {
+                    fn.apply(me, args)
+                }, wait)
+            }
+            // clearTimeout(timer)
+            // timer = setTimeout(fn, wait)
+        }
+    }
 </script>
 </html>
