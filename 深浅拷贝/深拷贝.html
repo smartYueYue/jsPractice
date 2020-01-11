@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+
+</script>
+<script>
+  // var arr = [1, 2, 3, {'aa': 'asdf'}]
+  var arr = ['old', 1, true, ['old1', 'old2'], {old: 1}]
+  function deepCopy (value) {
+    if (typeof(value) !== 'object') return
+    var newValue = value instanceof Array ? [] : {}
+    for (let item in value) {
+      console.log(item)
+      if (value.hasOwnProperty(item)) {
+        // console.log(item, typeof(item))
+        newValue[item] = typeof(value[item]) === 'object' ? deepCopy(value[item]) : value[item]
+      }
+    }
+    return newValue
+  }
+  // var deepCopy = function(obj) {
+  //   if (typeof obj !== 'object') return;
+  //   var newObj = obj instanceof Array ? [] : {};
+  //   for (var key in obj) {
+  //       if (obj.hasOwnProperty(key)) {
+  //           newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+  //       }
+  //   }
+  //   return newObj;
+  // }
+  let newarr = deepCopy(arr)
+  arr[3]['aa'] = 4
+  console.log(arr)
+  console.log(newarr)
+</script>
+</html>
