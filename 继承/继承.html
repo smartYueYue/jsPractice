@@ -56,10 +56,24 @@ function Man (name) {
 
 var man1 = new Man('wang')
 man1.color.push('orange')
-console.log(man1.name)
-console.log(man1.color)
 var man2 = new Man('pan')
-console.log(man2.name)
-console.log(man2.color)
+
+// class 继承
+class Parent {
+    constructor(value) {
+        this.value = value
+    }
+    getName() {
+        console.log(this.value)
+    }
+}
+class Child extends Parent {
+    constructor(value) {
+        super(value)
+    }
+}
+let child = new Child(1)
+child.getValue() // 1
+child instanceof Parent // true
 </script>
 </html>
