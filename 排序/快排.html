@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  var arr = [1,5,4,2,8,5,9,2,3]
+  function quick (value) {
+    if (value.length === 0) {
+      return value
+    }
+    let arr = value
+    let flag = arr.shift()
+    console.log(flag, arr)
+    let left = []
+    let right = []
+    for (let a = 0; a < arr.length; a++) {
+      if (arr[a] < flag) {
+        left.push(arr[a])
+      }
+      if (arr[a] >= flag) {
+        right.push(arr[a])
+      }
+    }
+    console.log(left, right)
+    return quick(left).concat([flag], quick(right))
+  }
+  console.log(quick(arr))
+</script>
+</html>

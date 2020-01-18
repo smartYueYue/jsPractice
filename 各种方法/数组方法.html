@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=q">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <ul>
+      <li>push() pop() shift() unshift()</li>
+      <li>reverse() sort()</li>
+      <li>indexOf()  lastIndexOf()</li>
+      <li>concat()</li>
+      <li>join() toString()</li>
+      <li>splice() slice()</li>
+      <li>every() some() filter() map() forEach() reduce() reduceRight()</li>
+      <li>find() findIndex()</li>
+      <li>fill() copyWithin()</li>
+      <li>Array.isArray() Array.of() Array.from()</li>
+    </ul>
+  </div>
+</body>
+<script>
+  let arr = [1, 2, 3, 4, 5]
+  let a = arr.map((item) => {
+    return item + 1
+  })// [2, 3, 4, 5, 6]
+  let b = arr.filter(item => {
+    return item > 3
+  })// [4, 5]
+  function arrayfrom () {
+    return Array.from(arguments)
+  }
+  let c = arrayfrom(1, 4, 6)
+  // array.reduce(function(prev, cur, index, arr), initialValue)
+  let d = arr.reduce((prev, cur, index, arr)=> {
+    console.log(prev, cur, index);
+    return prev + cur;
+  }, 1)// 15
+  let f = arr.findIndex(function(item) {
+    return item === 3
+  })// 2
+  let g = arr.fill(0, 2)
+</script>
+</html>
