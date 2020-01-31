@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+</body>
+<script>
+let arr1 = [1, 3, 5]
+let arr2 = [2, 4]
+function concatSort(arr1, arr2, newArr = []) {
+  if(arr1[0] < arr2[0]) {
+    newArr.push(arr1.splice(0, 1).toString())
+  } else {
+    newArr.push(arr2.splice(0, 1).toString())
+  }
+  if (arr1.length && arr2.length) {
+    concatSort(arr1, arr2, newArr)
+  } else {
+    if (arr1.length) newArr.push(arr1.splice(0, 1).toString())
+    if (arr2.length) newArr.push(arr2.splice(0, 1).toString())
+  }
+  return newArr
+}
+let a = merge(arr1, arr2)
+
+function merge(left, right) {
+  let newArr = []
+  while(left.length && right.length) {
+    if (left[0] < right[0]) {
+      newArr.push(left[0])
+      left.shift()
+    } else {
+      newArr.push(right[0])
+      right.shift()
+    }
+  }
+  return newArr.concat(left).concat(right)
+}
+
+let arr = [2,3,8,4,9,5,4]
+function splitArr (arr) {
+  let newArr = []
+  while (arr.length) {
+    console.log(arr.length)
+    newArr.push(arr.splice(0, 2))
+  }
+  return newArr
+}
+let b= splitArr(arr)
+
+function main (arr) {
+  if (arr.length <= 1) {
+    return arr
+  }
+
+  const mid = Math.floor(arr.length / 2)
+  const left = arr.splice(0, mid)
+  const right = arr.splice(mid)
+
+  return merge(main(left), main(right))
+
+}
+</script>
+</html>
