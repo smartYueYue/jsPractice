@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function NodeList (val) {
+    this.val = val
+    this.children = []
+  }
+
+  let node = {
+    val: 3,
+    children: [{
+      val: 4,
+      children: [{
+        val: 1,
+        children: []
+      }]
+    }, {
+      val: 6,
+      children: [{
+        val: 3,
+        children: []
+      }]
+    }, {
+      val: 8,
+      children: []
+    }]
+  }
+  // 最深遍历
+  function orderNode (node) {
+    let newNode  = []
+    let order = function (node) {
+      if (node.children.length === 0) {
+        newNode.push(node.val)
+        return node
+      }
+      for (let i = 0; i < node.children.length; i++) {
+        order(node.children[i])
+      }
+      newNode.push(node.val)
+    }
+    order(node)
+    return newNode
+  }
+  // console.log(orderNode(node))
+  
+  // 按层遍历
+  function floorNode (node) {
+    let newNode = [node.val]
+    let order = function (children) {
+      if (!children || children.length === 0) {
+        return children
+      }
+      let len = children.length
+      let temp = []
+      for (let i = 0; i < len; i++) {
+        newNode.push(children[i].val)
+        temp.push(...children[i].children)
+      }
+      order(temp)
+    }
+    order(node.children)
+    return newNode
+  }
+  console.log(floorNode(node))
+</script>
+</html>

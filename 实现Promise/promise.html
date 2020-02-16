@@ -95,9 +95,19 @@ const promise = new Promise((resolve, reject) => {
 const start = Date.now()
 promise.then((res) => {
   console.log(res, Date.now() - start)
+}).then(res => {
+  console.log(111)
+  return Promise.reject()
+}).then(res => {
+  console.log(222)
+}).catch(res => {
+  console.log('catch')
+  // return Promise.resolve()
+}).then(() => {
+  console.log(333)
 })
-promise.then((res) => {
-  console.log(res, Date.now() - start)
-})
+// promise.then((res) => {
+//   console.log(res, Date.now() - start)
+// })
 </script>
 </html>

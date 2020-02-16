@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="mask"></div>
+</body>
+<script>
+Function.prototype.apply2 = function (context, arr) {
+  var context = context || window
+  context.fn = this
+  let result = context.fn(...arr)
+  delete context.fn
+  return result
+}
+function Person () {
+    this.name = 'yang'
+    this.color = ['yellow', 'red', 'blue']
+}
+
+function Man (name) {
+    Person.apply2(this, [1, 2])
+    this.name = name
+}
+
+var man1 = new Man('wang')
+man1.color.push('orange')
+var man2 = new Man('pan')
+
+
+</script>
+</html>

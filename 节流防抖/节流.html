@@ -34,5 +34,19 @@
       }
     }
   }
+  function t (fn, wait) {
+    var timer;
+    return function () {
+      let args = arguments
+      let me = this
+      if (timer) {
+      } else {
+        timer = setTimeout(function () {
+          timer = null
+          fn.apply(me, args)
+        }, wait)
+      }
+    }
+  }
 </script>
 </html>
